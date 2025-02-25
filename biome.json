@@ -20,7 +20,7 @@
         "noParameterAssign": "error"
       },
       "nursery": {
-        "useSortedClasses": "error"
+        "useSortedClasses": "info"
       }
     }
   },

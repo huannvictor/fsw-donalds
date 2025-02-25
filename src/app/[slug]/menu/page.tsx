@@ -1,6 +1,10 @@
-import { getRestaurantBySlug } from "@/data/get-restaurant-by-slug";
+import {
+  getRestaurantBySlug,
+  getRestaurantBySlugWithCategories,
+} from "@/data/get-restaurant-by-slug";
 import type { ConsumptionMethod } from "@prisma/client";
 import { notFound } from "next/navigation";
+import RestaurantCategories from "./components/categories";
 import RestaurantMenuHeader from "./components/header";
 
 interface RestaurantMenuPageProps {
@@ -19,6 +23,8 @@ const RestaurantMenuPage = async ({
   const { slug } = await params;
   const { consumptionMethod } = await searchParams;
   const restaurant = await getRestaurantBySlug(slug);
+  const restaurantWithCategories =
+    await getRestaurantBySlugWithCategories(slug);
 
   if (!isConsumptionMethodValid(consumptionMethod)) {
     return notFound();
@@ -28,9 +34,14 @@ const RestaurantMenuPage = async ({
     return notFound();
   }
 
+  if (!restaurantWithCategories) {
+    return notFound();
+  }
+
   return (
     <div>
       <RestaurantMenuHeader restaurant={restaurant} />
+      <RestaurantCategories restaurant={restaurantWithCategories} />
     </div>
   );
 };
