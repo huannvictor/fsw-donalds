@@ -1,10 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { getRestaurantBySlug } from "@/data/get-restaurant-by-slug";
 import type { ConsumptionMethod } from "@prisma/client";
-import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import RestaurantMenuHeader from "./components/restaurant-menu-header";
+import RestaurantMenuHeader from "./components/header";
 
 interface RestaurantMenuPageProps {
   params: Promise<{ slug: string }>;
