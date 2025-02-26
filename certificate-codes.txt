@@ -1,2 +1,4 @@
 dia 1: E
 dia 2: Z
+dia 3: I
+dia 4: T
