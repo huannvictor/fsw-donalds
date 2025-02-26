@@ -6,6 +6,7 @@ import type { MenuCategory, Prisma, Restaurant } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import Products from "./products";
 
 interface RestaurantCategoriesProps {
   restaurant: Prisma.RestaurantGetPayload<{
@@ -32,7 +33,7 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
   };
 
   return (
-    <div className="relative z-50 mt-[-1.5rem] rounded-t-3xl border bg-white">
+    <div className="relative z-50 mt-[-1.5rem] rounded-t-3xl bg-white">
       <div className="p-5">
         <div className="item-center flex gap-3">
           <Image
@@ -69,7 +70,10 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
-      {<p>{selectedCategory.name}</p>}
+      <h2 className="px-5 pt-2 font-semibold text-base">
+        {selectedCategory.name}
+      </h2>
+      <Products products={selectedCategory.products} />
     </div>
   );
 };
