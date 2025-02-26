@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import type { MenuCategory, Prisma, Restaurant } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -73,7 +73,10 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
       <h2 className="px-5 pt-2 font-semibold text-base">
         {selectedCategory.name}
       </h2>
-      <Products products={selectedCategory.products} />
+      <Products
+        products={selectedCategory.products}
+        restaurantSlug={restaurant.slug}
+      />
     </div>
   );
 };
