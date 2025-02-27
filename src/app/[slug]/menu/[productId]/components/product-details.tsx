@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatCurrency } from "@/helpers/format-currency";
 import type { Prisma } from "@prisma/client";
 import { ChefHatIcon, MinusIcon, PlusIcon } from "lucide-react";
@@ -27,8 +28,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     setQuantity((prev) => (prev === 0 ? 0 : prev - 1));
 
   return (
-    <div className="relative z-50 mt-[-1.5rem] flex flex-auto flex-col gap-5 rounded-t-3xl bg-white p-5">
-      <div className="flex-auto space-y-3">
+    <div className="relative z-50 mt-[-1.5rem] flex flex-auto flex-col gap-5 overflow-hidden rounded-t-3xl bg-white p-5">
+      <div className="flex-auto space-y-3 overflow-hidden">
         <div className="flex items-center gap-1.5">
           <Image
             src={product.restaurant.avatarImageUrl}
@@ -42,7 +43,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           </span>
         </div>
 
-        <h2 className="mt-1 font-semibold text-sm">{product.name}</h2>
+        <h2 className="mt-1 font-semibold text-base">{product.name}</h2>
 
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-lg">
@@ -68,29 +69,31 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           </div>
         </div>
 
-        <section className="space-y-2">
-          <h2 className="font-semibold text-base">Sobre</h2>
-          <section className="text-muted-foreground text-sm">
-            {product.description}
-          </section>
-        </section>
-
-        {product.ingredients.length > 0 ? (
+        <ScrollArea className="h-full">
           <section className="space-y-2">
-            <h2 className="flex items-center gap-1 text-center font-semibold text-base">
-              <ChefHatIcon size={16} />
-              Ingredientes
-            </h2>
-            <ul className="list-inside list-disc text-muted-foreground text-sm">
-              {product.ingredients.map((ingredient) => (
-                <li key={ingredient}>{ingredient}</li>
-              ))}
-            </ul>
+            <h2 className="font-semibold text-base">Sobre</h2>
+            <section className="text-muted-foreground text-sm">
+              {product.description}
+            </section>
           </section>
-        ) : null}
+
+          {product.ingredients.length > 0 ? (
+            <section className="mt-3 space-y-2">
+              <h2 className="flex items-center gap-1 text-center font-semibold text-base">
+                <ChefHatIcon size={16} />
+                Ingredientes
+              </h2>
+              <ul className="list-inside list-disc text-muted-foreground text-sm">
+                {product.ingredients.map((ingredient) => (
+                  <li key={ingredient}>{ingredient}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+        </ScrollArea>
       </div>
 
-      <Button variant="default" className="mt-6 w-full rounded-full">
+      <Button variant="default" className="mt-3 w-full rounded-full">
         Adicionar à Sacola
       </Button>
     </div>
