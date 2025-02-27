@@ -16,16 +16,15 @@ const ProductPage = async ({ params }: ProductPageProps) => {
     return notFound();
   }
 
-  const restaurant = await getRestaurantBySlug(slug);
-  if (!restaurant) {
+  if (product.restaurant.slug.toUpperCase() !== slug.toUpperCase()) {
     return notFound();
   }
 
   return (
-    <>
+    <div className="flex h-full flex-col">
       <ProductMenuHeader product={product} />
       <ProductDetails product={product} />
-    </>
+    </div>
   );
 };
 

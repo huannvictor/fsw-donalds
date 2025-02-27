@@ -8,6 +8,7 @@ export const getProduct = async (id: string) => {
         select: {
           name: true,
           avatarImageUrl: true,
+          slug: true,
         },
       },
     },
