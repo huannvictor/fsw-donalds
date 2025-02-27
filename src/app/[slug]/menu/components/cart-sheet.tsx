@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/sheet";
 import { useContext } from "react";
 import { CartContext } from "../contexts/cart";
+import CartProductItem from "./cart-product-item";
+
 const CartSheet = () => {
   const { isOpen, toggleCart, products } = useContext(CartContext);
 
@@ -17,13 +19,10 @@ const CartSheet = () => {
           <SheetTitle>Titulo</SheetTitle>
           <SheetDescription>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Laboriosam, obcaecati porro sit aut culpa voluptate.
           </SheetDescription>
         </SheetHeader>
         {products.map((product) => (
-          <h1 key={product.id}>
-            {product.name} - {product.quantity}
-          </h1>
+          <CartProductItem key={product.id} product={product} />
         ))}
       </SheetContent>
     </Sheet>
