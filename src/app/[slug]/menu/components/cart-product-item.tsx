@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useContext } from "react";
 
 const CartProductItem = ({ product }: { product: CartProduct }) => {
-  const { increaseProductQuantity, decreaseProductQuantity } =
+  const { increaseProductQuantity, decreaseProductQuantity, removeProduct } =
     useContext(CartContext);
 
   return (
@@ -49,7 +49,11 @@ const CartProductItem = ({ product }: { product: CartProduct }) => {
       </div>
 
       {/* direita */}
-      <Button variant="outline" className="size-8">
+      <Button
+        variant="outline"
+        className="size-8"
+        onClick={() => removeProduct(product.id)}
+      >
         <Trash2Icon size={16} />
       </Button>
     </div>
