@@ -1,10 +1,10 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { ShoppingBagIcon } from "lucide-react";
 import { useContext } from "react";
 import { CartContext } from "../contexts/cart";
 import CartProductItem from "./cart-product-item";
@@ -14,16 +14,18 @@ const CartSheet = () => {
 
   return (
     <Sheet open={isOpen} onOpenChange={toggleCart}>
-      <SheetContent>
+      <SheetContent className="w-[85%]">
         <SheetHeader>
-          <SheetTitle>Titulo</SheetTitle>
-          <SheetDescription>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </SheetDescription>
+          <SheetTitle className="flex items-center gap-1 text-left">
+            <ShoppingBagIcon size={16} />
+            Sacola
+          </SheetTitle>
         </SheetHeader>
-        {products.map((product) => (
-          <CartProductItem key={product.id} product={product} />
-        ))}
+        <div className="py-5">
+          {products.map((product) => (
+            <CartProductItem key={product.id} product={product} />
+          ))}
+        </div>
       </SheetContent>
     </Sheet>
   );
