@@ -8,11 +8,13 @@ import {
 } from "@/components/ui/sheet";
 import { formatCurrency } from "@/helpers/format-currency";
 import { ShoppingBagIcon } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../contexts/cart";
 import CartProductItem from "./cart-product-item";
+import FinishOrderDialog from "./finish-order-dialog";
 
 const CartSheet = () => {
+  const [isFinishOrderDialogOpen, setIsFinishOrderDialogOpen] = useState(false);
   const { isOpen, toggleCart, products, total } = useContext(CartContext);
 
   return (
@@ -44,8 +46,17 @@ const CartSheet = () => {
               </div>
             </CardContent>
           </Card>
+          <Button
+            className="w-full rounded-full"
+            onClick={() => setIsFinishOrderDialogOpen(true)}
+          >
+            Finalizar Pedido
+          </Button>
 
-          <Button className="w-full rounded-full">Finalizar Pedido</Button>
+          <FinishOrderDialog
+            open={isFinishOrderDialogOpen}
+            onOpenChange={setIsFinishOrderDialogOpen}
+          />
         </div>
       </SheetContent>
     </Sheet>
