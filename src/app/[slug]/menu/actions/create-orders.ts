@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/prisma";
 import type { ConsumptionMethod } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { RemoveCPFPunctuation } from "../helpers/cpf";
 
@@ -58,6 +59,7 @@ export const createOrder = async (input: CreateOrderInputProps) => {
     },
   });
 
+  revalidatePath(`/${input.slug}/orders`);
   redirect(
     `/${input.slug}/orders?cpf=${RemoveCPFPunctuation(input.customerCpf)}`,
   );
