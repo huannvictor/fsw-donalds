@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FSW Donalds
 
-## Getting Started
+Este é um projeto de um sistema de pedidos para um restaurante fictício chamado FSW Donalds. O sistema permite que os clientes façam pedidos online, selecionem produtos do menu e finalizem seus pedidos.
 
-First, run the development server:
+## Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js**: Framework React para desenvolvimento de aplicações web.
+- **Prisma**: ORM para interagir com o banco de dados PostgreSQL.
+- **React Hook Form**: Biblioteca para gerenciamento de formulários em React.
+- **Zod**: Biblioteca para validação de esquemas de dados.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código.
+- **Tailwind CSS**: Framework CSS para estilização.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Listagem de Produtos**: Exibe uma lista de produtos disponíveis no menu do restaurante.
+- **Finalização de Pedido**: Permite que o cliente insira suas informações e finalize o pedido.
+- **Validação de CPF**: Valida o CPF do cliente antes de finalizar o pedido.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Futuras Funcionalidades:
 
-## Learn More
+- **Validação via Email**: Valida o pedido por email, em vez de CPF.
+- **Session Storage**: Mudar a forma de envio de alguns dados, em vez de ser via url, ser por Session Storage.
 
-To learn more about Next.js, take a look at the following resources:
+## Configuração do Ambiente
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/fsw-donalds.git
+   cd fsw-donalds
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+3. Configure as variáveis de ambiente:
+   Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis:
+   ```
+   DATABASE_URL=postgresql://usuario:senha@localhost:5432/fsw-donalds
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Execute as migrações do banco de dados:
+   ```bash
+   npx prisma migrate dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+## Contribuição
+
+Se você deseja contribuir com este projeto, siga os passos abaixo:
+
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature (`git checkout -b minha-feature`).
+3. Commit suas mudanças (`git commit -am 'Adiciona minha feature'`).
+4. Faça um push para a branch (`git push origin minha-feature`).
+5. Abra um Pull Request.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
