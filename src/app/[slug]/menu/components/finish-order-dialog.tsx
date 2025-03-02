@@ -37,15 +37,19 @@ const formSchema = z.object({
   name: z.string().trim().min(1, {
     message: "O nome é obrigatório.",
   }),
-  cpf: z
+  email: z
     .string()
-    .trim()
-    .min(1, {
-      message: "O nome é obrigatório.",
-    })
-    .refine((value) => isValidCPF(value), {
-      message: "CPF inválido.",
-    }),
+    .nonempty({ message: "O email é obrigatório" })
+    .email({ message: "email inválido" }),
+  // cpf: z
+  //   .string()
+  //   .trim()
+  //   .min(1, {
+  //     message: "O nome é obrigatório.",
+  //   })
+  //   .refine((value) => isValidCPF(value), {
+  //     message: "CPF inválido.",
+  //   }),
 });
 
 type formSchema = z.infer<typeof formSchema>;
@@ -66,7 +70,7 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      cpf: "",
+      email: "",
     },
     shouldUnregister: true,
   });
@@ -79,8 +83,8 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
 
       startTransition(async () => {
         await createOrder({
-          customerCpf: data.cpf,
           customerName: data.name,
+          customerEmail: data.email,
           consumptionMethod,
           products,
           slug,
@@ -123,17 +127,12 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
 
               <FormField
                 control={form.control}
-                name="cpf"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>CPF</FormLabel>
+                    <FormLabel>Seu email</FormLabel>
                     <FormControl>
-                      <PatternFormat
-                        placeholder="Digite seu CPF"
-                        format="###.###.###-##"
-                        customInput={Input}
-                        {...field}
-                      />
+                      <Input placeholder="Digite seu email" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

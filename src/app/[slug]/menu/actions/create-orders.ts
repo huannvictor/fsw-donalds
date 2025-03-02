@@ -4,11 +4,11 @@ import { db } from "@/lib/prisma";
 import type { ConsumptionMethod } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { RemoveCPFPunctuation } from "../helpers/cpf";
+import { generateHashFromEmail } from "../helpers/generateHashFromEmail";
 
 interface CreateOrderInputProps {
   customerName: string;
-  customerCpf: string;
+  customerEmail: string;
   products: Array<{
     id: string;
     quantity: number;
@@ -25,6 +25,8 @@ export const createOrder = async (input: CreateOrderInputProps) => {
   if (!restaurant) {
     throw new Error("Restaurando não encontrado");
   }
+
+  const hash = generateHashFromEmail(input.customerEmail);
 
   const productsWithPrice = await db.product.findMany({
     where: {
@@ -44,7 +46,8 @@ export const createOrder = async (input: CreateOrderInputProps) => {
     data: {
       status: "PENDING",
       customerName: input.customerName,
-      customerCpf: RemoveCPFPunctuation(input.customerCpf),
+      customerEmail: input.customerEmail,
+      customerHash: hash,
       consumptionMethod: input.consumptionMethod,
       restaurantId: restaurant.id,
       orderProducts: {
@@ -59,8 +62,8 @@ export const createOrder = async (input: CreateOrderInputProps) => {
     },
   });
 
+  console.log(hash);
+
   revalidatePath(`/${input.slug}/orders`);
-  redirect(
-    `/${input.slug}/orders?cpf=${RemoveCPFPunctuation(input.customerCpf)}`,
-  );
+  redirect(`/${input.slug}/orders?customer=${hash}`);
 };

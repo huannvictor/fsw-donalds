@@ -1,28 +1,25 @@
 import { db } from "@/lib/prisma";
-import { RemoveCPFPunctuation, isValidCPF } from "../menu/helpers/cpf";
-import CpfForm from "./components/cpf-form";
+import CustomerEmailForm from "./components/email-form";
 import OrderList from "./components/order-list";
 
 interface OrdersPageProps {
-  searchParams: Promise<{ cpf: string }>;
+  searchParams: Promise<{ customer: string }>;
 }
 
 const OrdersPage = async ({ searchParams }: OrdersPageProps) => {
-  const { cpf } = await searchParams;
-  if (!cpf) {
-    return <CpfForm />;
+  const { customer } = await searchParams;
+  if (!customer) {
+    return <CustomerEmailForm />;
   }
 
-  if (!isValidCPF(cpf)) {
-    return <CpfForm />;
-  }
+  const customerHash = customer;
 
   const orders = await db.order.findMany({
     orderBy: {
       createdAt: "desc",
     },
     where: {
-      customerCpf: RemoveCPFPunctuation(cpf),
+      customerHash,
     },
     include: {
       restaurant: {
