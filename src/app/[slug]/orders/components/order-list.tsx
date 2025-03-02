@@ -8,7 +8,7 @@ import { formatCurrency } from "@/helpers/format-currency";
 import type { OrderStatus, Prisma } from "@prisma/client";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import Image from "next/image";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface OrderListProps {
   orders: Array<
