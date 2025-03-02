@@ -56,7 +56,9 @@ interface FinishOrderDialogProps {
 }
 
 const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug } = useParams<{
+    slug: string;
+  }>();
   const { products } = useContext(CartContext);
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
