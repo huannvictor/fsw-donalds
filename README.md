@@ -18,7 +18,7 @@ Este é um projeto de um sistema de pedidos para um restaurante fictício chamad
 - **Validação de Email**: Utiliza email do usuário para validar os pedidos.
 
 ## Futuras Funcionalidades:
-
+- **Desktop**: Adicionar layout para desktop
 - **Session Storage**: Mudar a forma de envio de alguns dados, em vez de ser via url, ser por Session Storage.
 
 ## Configuração do Ambiente
