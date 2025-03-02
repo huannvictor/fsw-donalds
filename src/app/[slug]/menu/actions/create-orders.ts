@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/prisma";
 import type { ConsumptionMethod } from "@prisma/client";
+import { redirect } from "next/navigation";
 import { RemoveCPFPunctuation } from "../helpers/cpf";
 
 interface CreateOrderInputProps {
@@ -56,4 +57,8 @@ export const createOrder = async (input: CreateOrderInputProps) => {
       ),
     },
   });
+
+  redirect(
+    `/${input.slug}/orders?cpf=${RemoveCPFPunctuation(input.customerCpf)}`,
+  );
 };
