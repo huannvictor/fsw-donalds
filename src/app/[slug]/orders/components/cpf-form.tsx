@@ -1,0 +1,116 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { usePathname, useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { PatternFormat } from "react-number-format";
+import { z } from "zod";
+import { RemoveCPFPunctuation, isValidCPF } from "../../menu/helpers/cpf";
+
+const formSchema = z.object({
+  cpf: z
+    .string()
+    .trim()
+    .min(1, {
+      message: "O nome é obrigatório.",
+    })
+    .refine((value) => isValidCPF(value), {
+      message: "CPF inválido.",
+    }),
+});
+
+type formSchema = z.infer<typeof formSchema>;
+
+const CpfForm = () => {
+  const form = useForm<formSchema>({
+    resolver: zodResolver(formSchema),
+  });
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const onSubmit = (data: formSchema) => {
+    router.push(`${pathname}?cpf=${RemoveCPFPunctuation(data.cpf)}`);
+  };
+
+  const handleCancel = () => router.back();
+
+  return (
+    <div>
+      <Drawer open>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Visualizar Peidos</DrawerTitle>
+            <DrawerDescription>
+              Insira seu cpf abaixo para visualizar seus pedidos.
+            </DrawerDescription>
+          </DrawerHeader>
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="cpf"
+                render={({ field }) => (
+                  <FormItem className="px-5">
+                    <FormLabel>CPF</FormLabel>
+                    <FormControl>
+                      <PatternFormat
+                        placeholder="Digite seu CPF"
+                        format="###.###.###-##"
+                        customInput={Input}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <DrawerFooter>
+                <Button
+                  type="submit"
+                  variant="destructive"
+                  className="w-full rounded-full"
+                >
+                  Confirmar
+                </Button>
+                <DrawerClose asChild>
+                  <Button
+                    variant="secondary"
+                    className="w-full rounded-full"
+                    onClick={handleCancel}
+                  >
+                    Cancelar
+                  </Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </form>
+          </Form>
+        </DrawerContent>
+      </Drawer>
+    </div>
+  );
+};
+
+export default CpfForm;
