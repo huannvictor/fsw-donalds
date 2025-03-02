@@ -58,7 +58,7 @@ const CpfForm = () => {
   return (
     <div>
       <Drawer open>
-        <DrawerContent>
+        <DrawerContent className="m-auto h-fit w-[420px]">
           <DrawerHeader>
             <DrawerTitle>Visualizar Peidos</DrawerTitle>
             <DrawerDescription>

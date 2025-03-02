@@ -21,9 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${poppins.className} antialiased`}>
-        <CartProvider>{children}</CartProvider>
-
+      <body
+        className={`${poppins.className} flex flex-col items-center justify-center antialiased`}
+      >
+        <CartProvider>
+          <div className="h-full w-[390px]">{children}</div>
+        </CartProvider>
         <Toaster />
       </body>
     </html>
