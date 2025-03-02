@@ -2,10 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { formatCurrency } from "@/helpers/format-currency";
 import type { Prisma } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../contexts/cart";
+import CartSheet from "./cart-sheet";
 import Products from "./products";
 
 interface RestaurantCategoriesProps {
@@ -23,11 +26,16 @@ type MenuCategoriesWithProducts = Prisma.MenuCategoryGetPayload<{
 }>;
 
 const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
+  const { products, total, totalQuantity, toggleCart } =
+    useContext(CartContext);
+
   const [selectedCategory, setSelectedCategory] =
     useState<MenuCategoriesWithProducts>(restaurant.menuCategories[0]);
+
   const handleCategoryClick = (category: MenuCategoriesWithProducts) => {
     setSelectedCategory(category);
   };
+
   const getCategoryButtonVariant = (category: MenuCategoriesWithProducts) => {
     return category.id === selectedCategory.id ? "default" : "secondary";
   };
@@ -77,6 +85,22 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
         products={selectedCategory.products}
         restaurantSlug={restaurant.slug}
       />
+      {products.length > 0 && (
+        <div className="fixed right-0 bottom-0 left-0 flex w-full items-center justify-between border border-t bg-white px-5 py-3">
+          <div>
+            <p className="to-muted-foreground text-xs">Total dos pedidos</p>
+            <p className="font-semibold text-sm">
+              {formatCurrency(total)}
+              <span className="font-normal text-muted-foreground text-xs">
+                /{totalQuantity} {totalQuantity <= 1 ? " item" : " itens"}
+              </span>
+            </p>
+          </div>
+
+          <Button onClick={toggleCart}>Ver sacola</Button>
+          <CartSheet />
+        </div>
+      )}
     </div>
   );
 };
