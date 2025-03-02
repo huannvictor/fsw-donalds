@@ -53,13 +53,14 @@ model Product {
 }
 
 model Order {
-  id                Int               @id @default(autoincrement())
+  id                String            @id @default(uuid())
   restaurantId      String
   total             Float
   status            OrderStatus
   consumptionMethod ConsumptionMethod
   customerName      String
-  customerCpf       String
+  customerEmail     String
+  customerHash      String
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
 
@@ -70,7 +71,7 @@ model Order {
 
 model OrderProduct {
   id        String   @id @default(uuid())
-  orderId   Int
+  orderId   String
   productId String
   quantity  Int
   price     Float
