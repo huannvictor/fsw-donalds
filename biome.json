@@ -15,8 +15,6 @@
       },
       "style": {
         "noNonNullAssertion": "error",
-        "useBlockStatements": "error",
-        "useShorthandArrayType": "error",
         "noParameterAssign": "error"
       },
       "nursery": {
