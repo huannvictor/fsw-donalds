@@ -15,11 +15,10 @@ Este é um projeto de um sistema de pedidos para um restaurante fictício chamad
 
 - **Listagem de Produtos**: Exibe uma lista de produtos disponíveis no menu do restaurante.
 - **Finalização de Pedido**: Permite que o cliente insira suas informações e finalize o pedido.
-- **Validação de CPF**: Valida o CPF do cliente antes de finalizar o pedido.
+- **Validação de Email**: Utiliza email do usuário para validar os pedidos.
 
 ## Futuras Funcionalidades:
 
-- **Validação via Email**: Valida o pedido por email, em vez de CPF.
 - **Session Storage**: Mudar a forma de envio de alguns dados, em vez de ser via url, ser por Session Storage.
 
 ## Configuração do Ambiente
