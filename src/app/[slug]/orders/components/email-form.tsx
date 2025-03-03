@@ -54,8 +54,10 @@ const CustomerEmailForm = () => {
       <Drawer open>
         <DrawerContent className="m-auto h-fit w-[420px]">
           <DrawerHeader>
-            <DrawerTitle>Visualizar Pedidos</DrawerTitle>
-            <DrawerDescription>
+            <DrawerTitle className="text-center">
+              Visualizar Pedidos
+            </DrawerTitle>
+            <DrawerDescription className="text-center">
               Insira seu email abaixo para visualizar seus pedidos.
             </DrawerDescription>
           </DrawerHeader>

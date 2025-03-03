@@ -12,6 +12,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "FSW Donalds",
   description: "O melhor fast food do mundo",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -25,7 +26,7 @@ export default function RootLayout({
         className={`${poppins.className} flex flex-col items-center justify-center antialiased`}
       >
         <CartProvider>
-          <div className="h-full w-[390px]">{children}</div>
+          <div className="h-full w-full sm:w-[390px]">{children}</div>
         </CartProvider>
         <Toaster />
       </body>
