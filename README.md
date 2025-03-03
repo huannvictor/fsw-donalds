@@ -37,15 +37,25 @@ Este é um projeto de um sistema de pedidos para um restaurante fictício chamad
 3. Configure as variáveis de ambiente:
    Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis:
    ```
-   DATABASE_URL=postgresql://usuario:senha@localhost:5432/fsw-donalds
+   DATABASE_URL=postgresql://user:password@localhost:5432/fsw-donalds
+   ```
+   
+4. Popule os dados do restaurante:
+   ```bash
+   npx prisma db seed
    ```
 
-4. Execute as migrações do banco de dados:
+5. Gere o Cliente Prisma para acessar o banco de dados:
+   ```bash
+   npx prisma generate
+   ```
+
+6. Execute as migrações do banco de dados:
    ```bash
    npx prisma migrate dev
    ```
 
-5. Inicie o servidor de desenvolvimento:
+7. Inicie o servidor de desenvolvimento:
    ```bash
    npm run dev
    ```
