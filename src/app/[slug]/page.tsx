@@ -15,7 +15,7 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
   }
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center px-6 pt-24">
+    <div className="flex h-screen flex-col items-center justify-center gap-6">
       <div className="flex flex-col items-center gap-2">
         <Image
           src={restaurant.avatarImageUrl}
@@ -26,7 +26,7 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
         <h2 className="font-semibold">{restaurant.name}</h2>
       </div>
 
-      <div className="space-y-2 pt-24 text-center">
+      <div className="space-y-2 px-10 text-center md:w-[550px]">
         <h3 className="font-semibold text-2xl">Seja bem-vindo!</h3>
         <p className="opacity-55">
           Escolha como prefere aproveitar sua refeição. Estamos aqui para
@@ -34,7 +34,7 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 pt-14">
+      <div className="grid grid-cols-2 gap-4 px-6">
         <ConsumptionMethodCard
           slug={slug}
           buttonText="Para comer aqui"

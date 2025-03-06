@@ -34,6 +34,7 @@ const RestaurantMenuHeader = ({ restaurant }: RestaurantMenuHeaderProps) => {
       >
         <ScrollTextIcon />
       </Button>
+      <div className="relative z-[75] hidden h-full w-full bg-gradient-to-t from-10% from-slate-200 via-40% via-transparent md:block" />
       <Image
         src={restaurant.coverImageUrl}
         alt={restaurant.name}
