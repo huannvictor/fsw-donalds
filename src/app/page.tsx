@@ -2,8 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 const HomePage = () => {
   return (
-    <div className="mx-auto flex h-full w-[80%] flex-col items-center justify-center gap-20 p-10 md:grid md:w-[80%] md:grid-cols-3 md:flex-row">
-      <section className="flex flex-col items-center justify-center gap-5 text-center md:col-span-2 md:text-left">
+    <div
+      className="
+        mx-auto flex h-full w-[80%] flex-col items-center justify-center gap-20 p-10
+        md:grid md:w-[80%] md:grid-cols-3 md:flex-row
+      "
+    >
+      <section
+        className="
+          flex flex-col items-center justify-center gap-5 text-center 
+          md:col-span-2 md:text-left
+        "
+      >
         <h1 className="font-semibold text-2xl md:font-bold md:text-4xl">
           Onde você gostaria de matar sua fome hoje?
         </h1>

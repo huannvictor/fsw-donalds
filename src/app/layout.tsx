@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${poppins.className} flex flex-col items-center justify-center bg-gray-200 antialiased`}
+        className={`${poppins.className} flex flex-col items-center justify-center antialiased`}
       >
         <CartProvider>
           <div className="h-full w-full">{children}</div>
