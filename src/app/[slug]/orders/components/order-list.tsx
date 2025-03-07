@@ -43,7 +43,7 @@ const OrderList = ({ orders }: OrderListProps) => {
   const handleBackClick = () => router.back();
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 p-6 md:mx-auto md:w-[550px]">
       <Button
         size="icon"
         variant="secondary"

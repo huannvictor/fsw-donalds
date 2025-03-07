@@ -34,7 +34,6 @@ const RestaurantMenuHeader = ({ restaurant }: RestaurantMenuHeaderProps) => {
       >
         <ScrollTextIcon />
       </Button>
-      <div className="relative z-[75] h-full w-full" />
       <Image
         src={restaurant.coverImageUrl}
         alt={restaurant.name}

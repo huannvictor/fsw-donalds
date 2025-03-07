@@ -36,7 +36,12 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
 
   return (
     <>
-      <div className="relative z-50 mt-[-1.5rem] flex flex-auto flex-col space-y-5 rounded-t-3xl bg-white p-5">
+      <div
+        className="
+          relative z-50 mt-[-1.5rem] flex flex-auto flex-col space-y-5 rounded-t-3xl bg-white p-5
+          md:mx-auto md:mt-[-15rem] md:w-[550px] md:border-slate-600/30
+      "
+      >
         <div className="flex-auto">
           <div className="flex flex-col gap-3">
             <div className="space-y-1">
