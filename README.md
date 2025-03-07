@@ -18,11 +18,18 @@ Este é um projeto de um sistema de pedidos para um restaurante fictício chamad
 - **Validação de Email**: Utiliza email do usuário para validar os pedidos.
 
 ## Futuras Funcionalidades:
+> São funcionalidades implementadas de maneira independente após o evento FSW.
 - **Desktop**: Adicionar layout para desktop:
-- [x] home (layout e page)
-- [x] slug
-- [ ] product
-- [ ] orders
+  - [x] home (layout e page)
+  - [x] slug
+  - [x] product
+  - [x] orders
+- **Área Restaurante**: Criar área que o restaurante consegue visualizar, alterar, atualizar, cancelar, excluir pedidos.
+  - [ ] Tabela dos pedidos:
+    - [ ] lista todos os pedidos
+    - [ ] caixa de seleção: atualizar status
+    - [ ] botão cancelar pedido
+    - [ ] botão finalizar pedido
 - **Session Storage**: Mudar a forma de envio de alguns dados, em vez de ser via url, ser por Session Storage.
 
 ## Configuração do Ambiente
