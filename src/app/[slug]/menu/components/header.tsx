@@ -17,7 +17,7 @@ const RestaurantMenuHeader = ({ restaurant }: RestaurantMenuHeaderProps) => {
   const handleOrdersClick = () => router.push(`/${restaurant.slug}/orders`);
 
   return (
-    <div className="relative h-[250px] w-full">
+    <div className="relative h-[250px] w-full md:h-[350px]">
       <Button
         variant="secondary"
         size="icon"
@@ -34,7 +34,7 @@ const RestaurantMenuHeader = ({ restaurant }: RestaurantMenuHeaderProps) => {
       >
         <ScrollTextIcon />
       </Button>
-      <div className="relative z-[75] hidden h-full w-full bg-gradient-to-t from-10% from-slate-200 via-40% via-transparent md:block" />
+      <div className="relative z-[75] h-full w-full" />
       <Image
         src={restaurant.coverImageUrl}
         alt={restaurant.name}
